@@ -113,10 +113,15 @@ public abstract class AbstractWebDriverSubStepImplementations implements Provide
      */
     public byte[] getScreenshotBytes() {
 
-        final WebDriver webDriver = webDriver();
+        if (this.webDriverContextSupplier.get() != null){
+            final WebDriver webDriver = webDriver();
 
-        return TakesScreenshot.class.isAssignableFrom(webDriver.getClass()) ? getScreenshotBytes((TakesScreenshot) webDriver)
-                : null;
+            return TakesScreenshot.class.isAssignableFrom(webDriver.getClass()) ? getScreenshotBytes((TakesScreenshot) webDriver)
+                    : null;
+        }
+        else {
+            return null;
+        }
     }
 
 
