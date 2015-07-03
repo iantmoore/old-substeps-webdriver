@@ -23,15 +23,42 @@ package com.technophobia.webdriver.substeps.runner;
 import com.technophobia.webdriver.util.WebDriverContext;
 import org.openqa.selenium.WebDriver;
 
+/**
+ * <p>WebDriverFactory interface.</p>
+ *
+ * @author ian
+ * @version $Id: $Id
+ */
 public interface WebDriverFactory {
 
+    /** Constant <code>WEB_DRIVER_FACTORY_KEY="webDriverFactory"</code> */
     static final String WEB_DRIVER_FACTORY_KEY = "webDriverFactory";
 
+    /**
+     * <p>createWebDriver.</p>
+     *
+     * @return a {@link org.openqa.selenium.WebDriver} object.
+     */
     WebDriver createWebDriver();
 
+    /**
+     * <p>driverType.</p>
+     *
+     * @return a {@link com.technophobia.webdriver.substeps.runner.DriverType} object.
+     */
     DriverType driverType();
 
+    /**
+     * <p>shutdownWebDriver.</p>
+     *
+     * @param webDriverContext a {@link com.technophobia.webdriver.util.WebDriverContext} object.
+     */
     void shutdownWebDriver(WebDriverContext webDriverContext);
 
+    /**
+     * <p>resetWebDriver.</p>
+     *
+     * @param webDriverContext a {@link com.technophobia.webdriver.util.WebDriverContext} object.
+     */
     void resetWebDriver(WebDriverContext webDriverContext);
 }

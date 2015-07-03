@@ -41,6 +41,12 @@ import com.technophobia.substeps.model.SubSteps.Step;
 import com.technophobia.substeps.model.SubSteps.StepImplementations;
 import com.technophobia.webdriver.util.WebDriverContext;
 
+/**
+ * <p>ActionWebDriverSubStepImplementations class.</p>
+ *
+ * @author ian
+ * @version $Id: $Id
+ */
 @StepImplementations(requiredInitialisationClasses = DefaultExecutionSetupTearDown.class)
 public class ActionWebDriverSubStepImplementations extends AbstractWebDriverSubStepImplementations {
 
@@ -49,11 +55,20 @@ public class ActionWebDriverSubStepImplementations extends AbstractWebDriverSubS
     private final FinderWebDriverSubStepImplementations locator;
 
 
+    /**
+     * <p>Constructor for ActionWebDriverSubStepImplementations.</p>
+     */
     public ActionWebDriverSubStepImplementations() {
         this.locator = new FinderWebDriverSubStepImplementations();
     }
 
 
+    /**
+     * <p>Constructor for ActionWebDriverSubStepImplementations.</p>
+     *
+     * @param locator a {@link com.technophobia.webdriver.substeps.impl.FinderWebDriverSubStepImplementations} object.
+     * @param webDriverContextSupplier a {@link com.google.common.base.Supplier} object.
+     */
     public ActionWebDriverSubStepImplementations(final FinderWebDriverSubStepImplementations locator,
             final Supplier<WebDriverContext> webDriverContextSupplier) {
         super(webDriverContextSupplier);
@@ -65,11 +80,10 @@ public class ActionWebDriverSubStepImplementations extends AbstractWebDriverSubS
      * Navigate to a url, if the url begins with http or file, the url will be
      * used as is, if a relative url is specified then it will be prepended with
      * the base url property
-     * 
+     *
      * @example NavigateTo /myApp (will navigate to http://localhost/myApp if
      *          base.url is set to http://localhost)
      * @section Location
-     * 
      * @param url
      *            the url
      */
@@ -87,10 +101,9 @@ public class ActionWebDriverSubStepImplementations extends AbstractWebDriverSubS
 
     /**
      * Find an element by id, then click it.
-     * 
+     *
      * @example ClickById login
      * @section Clicks
-     * 
      * @param id
      *            the id
      */
@@ -104,7 +117,7 @@ public class ActionWebDriverSubStepImplementations extends AbstractWebDriverSubS
 
     /**
      * Click (the current element)
-     * 
+     *
      * @example Click
      * @section Clicks
      */
@@ -117,7 +130,7 @@ public class ActionWebDriverSubStepImplementations extends AbstractWebDriverSubS
 
     /**
      * Click the link "(....)" as it appears on the page
-     * 
+     *
      * @example ClickLink "Contracts"
      * @section Clicks
      * @param linkText
@@ -136,7 +149,7 @@ public class ActionWebDriverSubStepImplementations extends AbstractWebDriverSubS
 
     /**
      * Click a button that has the text...
-     * 
+     *
      * @example ClickButton submit
      * @section Clicks
      * @param buttonText
@@ -153,6 +166,11 @@ public class ActionWebDriverSubStepImplementations extends AbstractWebDriverSubS
     }
 
 
+    /**
+     * <p>clickInput.</p>
+     *
+     * @param buttonText a {@link java.lang.String} object.
+     */
     @Step("ClickSubmitButton \"([^\"]*)\"")
     public void clickInput(final String buttonText) {
         logger.debug("About to click submit button with text " + buttonText);
@@ -188,7 +206,7 @@ public class ActionWebDriverSubStepImplementations extends AbstractWebDriverSubS
 
     /**
      * Wait for the specified number of milliseconds
-     * 
+     *
      * @example WaitFor 10
      * @section Location
      * @param value
@@ -209,10 +227,9 @@ public class ActionWebDriverSubStepImplementations extends AbstractWebDriverSubS
 
     /**
      * Wait for the page title to change to the specified value
-     * 
+     *
      * @example WaitForPageTitle "My Home Page"
      * @section Location
-     * 
      * @param expectedTitle
      *            the expected title
      */
@@ -255,10 +272,9 @@ public class ActionWebDriverSubStepImplementations extends AbstractWebDriverSubS
     /**
      * Transfer the focus into the current element (set with a previous Find
      * method) which should be a frame or iframe
-     * 
+     *
      * @example SwitchFrameToCurrentElement
      * @section Location
-     * 
      */
     @Step("SwitchFrameToCurrentElement")
     public void switchFrameToCurrentElement() {
@@ -276,10 +292,9 @@ public class ActionWebDriverSubStepImplementations extends AbstractWebDriverSubS
     /**
      * Performs a double click on the current element (set with a previous Find
      * method).
-     * 
+     *
      * @example PerformDoubleClick
      * @section Clicks
-     * 
      */
     @Step("PerformDoubleClick")
     public void doDoubleClick() {
@@ -295,10 +310,9 @@ public class ActionWebDriverSubStepImplementations extends AbstractWebDriverSubS
     /**
      * Performs a context click (typically right click, unless this has been
      * changed by the user) on the current element.
-     * 
+     *
      * @example PerformContextClick
      * @section Clicks
-     * 
      */
     @Step("PerformContextClick")
     public void performContextClick() {
@@ -316,6 +330,11 @@ public class ActionWebDriverSubStepImplementations extends AbstractWebDriverSubS
     }
 
 
+    /**
+     * <p>dismissAlertWithMessage.</p>
+     *
+     * @param message a {@link java.lang.String} object.
+     */
     @Step("DismissAlert with message \"([^\"]*)\"")
     public void dismissAlertWithMessage(final String message) {
 

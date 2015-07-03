@@ -33,6 +33,12 @@ import com.technophobia.substeps.runner.setupteardown.Annotations.BeforeAllFeatu
 import com.technophobia.substeps.runner.setupteardown.Annotations.BeforeEveryScenario;
 import com.technophobia.webdriver.util.WebDriverContext;
 
+/**
+ * <p>DefaultExecutionSetupTearDown class.</p>
+ *
+ * @author ian
+ * @version $Id: $Id
+ */
 public class DefaultExecutionSetupTearDown {
 
     private static final Logger logger = LoggerFactory.getLogger(DefaultExecutionSetupTearDown.class);
@@ -47,29 +53,55 @@ public class DefaultExecutionSetupTearDown {
             Scope.SUITE, WebDriverFactory.WEB_DRIVER_FACTORY_KEY);
 
 
+    /**
+     * <p>currentWebDriverContext.</p>
+     *
+     * @return a {@link com.google.common.base.Supplier} object.
+     */
     public static Supplier<WebDriverContext> currentWebDriverContext() {
         return webDriverContextSupplier;
     }
 
 
+    /**
+     * <p>getThreadLocalWebDriver.</p>
+     *
+     * @return a {@link org.openqa.selenium.WebDriver} object.
+     */
     public static WebDriver getThreadLocalWebDriver() {
         return getThreadLocalWebDriverContext().getWebDriver();
     }
 
 
+    /**
+     * <p>getThreadLocalWebDriverContext.</p>
+     *
+     * @return a {@link com.technophobia.webdriver.util.WebDriverContext} object.
+     */
     public static WebDriverContext getThreadLocalWebDriverContext() {
         return webDriverContextSupplier.get();
     }
 
+    /**
+     * <p>Constructor for DefaultExecutionSetupTearDown.</p>
+     */
     public DefaultExecutionSetupTearDown() {
         this(WebdriverSubstepsPropertiesConfiguration.INSTANCE);
     }
 
+    /**
+     * <p>Constructor for DefaultExecutionSetupTearDown.</p>
+     *
+     * @param configuration a {@link com.technophobia.webdriver.substeps.runner.WebdriverSubstepsConfiguration} object.
+     */
     public DefaultExecutionSetupTearDown(WebdriverSubstepsConfiguration configuration) {
         this.configuration = configuration;
     }
 
 
+    /**
+     * <p>beforeAllFeaturesSetup.</p>
+     */
     @BeforeAllFeatures
     public final void beforeAllFeaturesSetup() {
 
@@ -97,6 +129,9 @@ public class DefaultExecutionSetupTearDown {
     }
 
 
+    /**
+     * <p>basePreScenarioSetup.</p>
+     */
     @BeforeEveryScenario
     public final void basePreScenarioSetup() {
         startTimeMillis = System.currentTimeMillis();
@@ -112,6 +147,9 @@ public class DefaultExecutionSetupTearDown {
     }
 
 
+    /**
+     * <p>basePostScenariotearDown.</p>
+     */
     @AfterEveryScenario
     public final void basePostScenariotearDown() {
 

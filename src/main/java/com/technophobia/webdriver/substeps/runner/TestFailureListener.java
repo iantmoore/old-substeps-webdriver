@@ -24,15 +24,21 @@ import com.technophobia.substeps.runner.MutableSupplier;
 import com.technophobia.webdriver.util.WebDriverContext;
 
 /**
- * 
+ * <p>TestFailureListener class.</p>
+ *
  * @author imoore
- * 
+ * @version $Id: $Id
  */
 public class TestFailureListener implements INotifier {
 
     private final MutableSupplier<WebDriverContext> webDriverContextSupplier;
 
 
+    /**
+     * <p>Constructor for TestFailureListener.</p>
+     *
+     * @param webDriverContextSupplier a {@link com.technophobia.substeps.runner.MutableSupplier} object.
+     */
     public TestFailureListener(final MutableSupplier<WebDriverContext> webDriverContextSupplier) {
         super();
         this.webDriverContextSupplier = webDriverContextSupplier;
@@ -46,6 +52,7 @@ public class TestFailureListener implements INotifier {
      * com.technophobia.substeps.runner.INotifier#notifyTestFailed(com.technophobia
      * .substeps.execution.ExecutionNode, java.lang.Throwable)
      */
+    /** {@inheritDoc} */
     public void notifyNodeFailed(final IExecutionNode arg0, final Throwable arg1) {
 
         final WebDriverContext webDriverContext = this.webDriverContextSupplier.get();
@@ -65,6 +72,7 @@ public class TestFailureListener implements INotifier {
      * @see com.technophobia.substeps.runner.INotifier#notifyTestFinished(com.
      * technophobia.substeps.execution.ExecutionNode)
      */
+    /** {@inheritDoc} */
     public void notifyNodeFinished(final IExecutionNode arg0) {
         // no op
     }
@@ -77,6 +85,7 @@ public class TestFailureListener implements INotifier {
      * com.technophobia.substeps.runner.INotifier#notifyTestStarted(com.technophobia
      * .substeps.execution.ExecutionNode)
      */
+    /** {@inheritDoc} */
     public void notifyNodeStarted(final IExecutionNode arg0) {
         // no op
     }
@@ -89,6 +98,7 @@ public class TestFailureListener implements INotifier {
      * com.technophobia.substeps.runner.INotifier#notifyTestIgnored(com.technophobia
      * .substeps.execution.ExecutionNode)
      */
+    /** {@inheritDoc} */
     public void notifyNodeIgnored(final IExecutionNode node) {
         // TODO Auto-generated method stub
 
@@ -101,6 +111,11 @@ public class TestFailureListener implements INotifier {
      * @see
      * com.technophobia.substeps.runner.INotifier#addListener(com.technophobia
      * .substeps.runner.INotifier)
+     */
+    /**
+     * <p>addListener.</p>
+     *
+     * @param listener a {@link com.technophobia.substeps.runner.INotifier} object.
      */
     public void addListener(final INotifier listener) {
         // TODO Auto-generated method stub

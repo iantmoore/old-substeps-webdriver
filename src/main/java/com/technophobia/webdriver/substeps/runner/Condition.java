@@ -20,11 +20,16 @@ package com.technophobia.webdriver.substeps.runner;
 
 /**
  * TODO
- * 
+ *
  * @author imoore
- * 
+ * @version $Id: $Id
  */
 public interface Condition
 {
+	/**
+	 * <p>conditionMet.</p>
+	 *
+	 * @return a boolean.
+	 */
 	boolean conditionMet();
 }

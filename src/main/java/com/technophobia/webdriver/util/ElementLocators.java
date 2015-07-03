@@ -29,6 +29,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * <p>ElementLocators class.</p>
+ *
+ * @author ian
+ * @version $Id: $Id
+ */
 public class ElementLocators {
 
     private static final Logger LOG = LoggerFactory.getLogger(ElementLocators.class);
@@ -37,11 +43,26 @@ public class ElementLocators {
     final static long polltime = 1000;
 
 
+    /**
+     * <p>waitForElement.</p>
+     *
+     * @param by a {@link org.openqa.selenium.By} object.
+     * @param webDriver a {@link org.openqa.selenium.WebDriver} object.
+     * @return a {@link org.openqa.selenium.WebElement} object.
+     */
     public static WebElement waitForElement(final By by, WebDriver webDriver) {
         return waitForElement(by, WebdriverSubstepsPropertiesConfiguration.INSTANCE.defaultTimeout(), webDriver);
     }
 
 
+    /**
+     * <p>waitForElement.</p>
+     *
+     * @param by a {@link org.openqa.selenium.By} object.
+     * @param timeOutSeconds a long.
+     * @param webDriver a {@link org.openqa.selenium.WebDriver} object.
+     * @return a {@link org.openqa.selenium.WebElement} object.
+     */
     public static WebElement waitForElement(final By by, final long timeOutSeconds, WebDriver webDriver) {
         final WebDriverWait wait = new WebDriverWait(webDriver, timeOutSeconds);
         final Function<WebDriver, WebElement> condition2 = new Function<WebDriver, WebElement>() {
@@ -56,6 +77,14 @@ public class ElementLocators {
     }
 
 
+    /**
+     * <p>waitUntil.</p>
+     *
+     * @param wait a {@link org.openqa.selenium.support.ui.WebDriverWait} object.
+     * @param condition a {@link com.google.common.base.Function} object.
+     * @param webDriver a {@link org.openqa.selenium.WebDriver} object.
+     * @return a {@link org.openqa.selenium.WebElement} object.
+     */
     public static WebElement waitUntil(final WebDriverWait wait, final Function<WebDriver, WebElement> condition,
                                        WebDriver webDriver) {
         WebElement elem = null;
@@ -68,6 +97,13 @@ public class ElementLocators {
     }
 
 
+    /**
+     * <p>waitForCondition.</p>
+     *
+     * @param condition a {@link com.technophobia.webdriver.substeps.runner.Condition} object.
+     * @param webDriver a {@link org.openqa.selenium.WebDriver} object.
+     * @return a boolean.
+     */
     public static boolean waitForCondition(final Condition condition, WebDriver webDriver) {
 
         int count = 0;

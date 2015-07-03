@@ -42,17 +42,31 @@ import com.technophobia.webdriver.util.WebDriverContext;
 import com.technophobia.webdriver.util.WebDriverSubstepsBy;
 import com.technophobia.webdriver.util.WebElementPredicate;
 
+/**
+ * <p>FinderWebDriverSubStepImplementations class.</p>
+ *
+ * @author ian
+ * @version $Id: $Id
+ */
 @StepImplementations(requiredInitialisationClasses = DefaultExecutionSetupTearDown.class)
 public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubStepImplementations {
 
     private static final Logger logger = LoggerFactory.getLogger(FinderWebDriverSubStepImplementations.class);
 
 
+    /**
+     * <p>Constructor for FinderWebDriverSubStepImplementations.</p>
+     */
     public FinderWebDriverSubStepImplementations() {
         super();
     }
 
 
+    /**
+     * <p>Constructor for FinderWebDriverSubStepImplementations.</p>
+     *
+     * @param webDriverContextSupplier a {@link com.google.common.base.Supplier} object.
+     */
     public FinderWebDriverSubStepImplementations(final Supplier<WebDriverContext> webDriverContextSupplier) {
         super(webDriverContextSupplier);
     }
@@ -60,10 +74,9 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
 
     /**
      * Find an element by it's ID
-     * 
+     *
      * @example FindById username
      * @section Location
-     * 
      * @param id
      *            the id
      * @return the web element
@@ -84,10 +97,9 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
 
     /**
      * Find an element by it's ID with the specified timeout
-     * 
+     *
      * @example FindByIdTimeout username timeout = 15 secs
      * @section Location
-     * 
      * @param id
      *            the id
      * @param timeout
@@ -109,10 +121,9 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
 
     /**
      * Find an id by xpath
-     * 
+     *
      * @example FindByXpath
      * @section Location
-     * 
      * @param xpath
      *            the xpath
      */
@@ -128,10 +139,9 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
 
     /**
      * Find an element using the name attribute of the element
-     * 
+     *
      * @example FindByName "named field"
      * @section Location
-     * 
      * @param name
      *            the name
      * @return the web element
@@ -149,8 +159,7 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
 
     /**
      * Find element by predicate.
-     * 
-     * @example
+     *
      * @param predicate
      *            the predicate
      * @return the web element
@@ -178,7 +187,7 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
 
     /**
      * Finds an element on the page with the specified tag and text
-     * 
+     *
      * @example FindFirstTagElementContainingText tag="ul"
      *          text="list item itext"
      * @section Location
@@ -205,10 +214,9 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
     /**
      * Finds an element that is a child of the current element using the name
      * attribute, another Find method should be used first
-     * 
+     *
      * @example FindChild ByName name="child name"
      * @section Location
-     * 
      * @param name
      *            the name
      * @return the web element
@@ -228,11 +236,10 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
     /**
      * Finds an element that is a child of the current element using the tag
      * name and specified attributes, another Find method should be used first
-     * 
+     *
      * @example FindChild ByTagAndAttributes tag="input"
      *          attributes=[type="submit",value="Search"]
      * @section Location
-     * 
      * @param tag
      *            the tag
      * @param attributeString
@@ -273,11 +280,10 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
     /**
      * Finds the first child element of the 'current' element using the tag name
      * and specified attributes, another Find method should be used first
-     * 
+     *
      * @example FindFirstChild ByTagAndAttributes tag="input"
      *          attributes=[type="submit",value="Search"]
      * @section Location
-     * 
      * @param tag
      *            the tag
      * @param attributeString
@@ -297,17 +303,15 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
     /**
      * Finds a checkbox that is a child of the specified tag, that contains the
      * specified text; eg.
-     * 
-     * <pre>
-     * <label>
-     *  <input type="checkbox" name="checkbox_name" value="yeah"/>a checkbox <span>label</span>
-     * </label>
-     * </pre>
-     * 
-     * @example FindCheckbox inside tag="label" with label="a checkbox label>"
-     * 
+     *
+     * &lt;pre&gt;
+     * &lt;label&gt;
+     *  &lt;input type="checkbox" name="checkbox_name" value="yeah"/&gt;a checkbox &lt;span&gt;label&lt;/span&gt;
+     * &lt;/label&gt;
+     * &lt;/pre&gt;
+     *
+     * @example FindCheckbox inside tag="label" with label="a checkbox label"
      * @section Location
-     * 
      * @param tag
      *            the tag
      * @param label
@@ -327,17 +331,15 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
     /**
      * Finds a radiobutton that is a child of the specified tag, that contains
      * the specified text; eg.
-     * 
-     * <pre>
-     * <label>
-     *  <input type="radio" name="radio_name" value="yeah"/>a radio <span>label</span>
-     * </label>
-     * </pre>
-     * 
-     * @example FindRadioButton inside tag="label" with label="a radio label>"
-     * 
+     *
+     * &lt;pre&gt;
+     * &lt;label&gt;
+     *  &lt;input type="radio" name="radio_name" value="yeah"/&gt;a radio &lt;span&gt;label&lt;/span&gt;
+     * &lt;/label&gt;
+     * &lt;/pre&gt;
+     *
+     * @example FindRadioButton inside tag="label" with label="a radio label"
      * @section Location
-     * 
      * @param tag
      *            the tag
      * @param label
@@ -352,10 +354,12 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
 
 
     /**
-     * @param label
-     * @param tag
-     * @param inputType
-     * @return
+     * <p>findInputInsideTag.</p>
+     *
+     * @param label a {@link java.lang.String} object.
+     * @param tag a {@link java.lang.String} object.
+     * @param inputType a {@link java.lang.String} object.
+     * @return a {@link org.openqa.selenium.WebElement} object.
      */
     public WebElement findInputInsideTag(final String label, final String tag, final String inputType) {
         WebElement elem = null;
@@ -406,8 +410,10 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
 
 
     /**
-     * @param tag
-     * @param tagElems
+     * <p>checkElements.</p>
+     *
+     * @param tagElems a {@link java.util.List} object.
+     * @param msg a {@link java.lang.String} object.
      */
     public void checkElements(final String msg, final List<WebElement> tagElems) {
         Assert.assertNotNull(msg, tagElems);
@@ -418,7 +424,7 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
     /**
      * Find an element by tag name and a set of attributes and corresponding
      * values
-     * 
+     *
      * @param tag
      *            the tag
      * @param attributeString
@@ -458,7 +464,7 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
     /**
      * Finds the first element by tag name and a set of attributes and
      * corresponding values
-     * 
+     *
      * @param tag
      *            the tag
      * @param attributeString
@@ -479,9 +485,7 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
     /**
      * Finds the n th element by tag name and a set of attributes and
      * corresponding values
-     * 
-     * @param n
-     *            the nth matching element we wish to find
+     *
      * @param tag
      *            the tag
      * @param attributeString
@@ -490,6 +494,7 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
      * @example FindNthByTagAndAttributes n=2 tag="input"
      *          attributes=[type="submit",value="Search"]
      * @section Location
+     * @param nth a {@link java.lang.Integer} object.
      */
     @Step("FindNthByTagAndAttributes n=\"?([^\"]*)\"? tag=\"?([^\"]*)\"? attributes=\\[(.*)\\]")
     public WebElement findNthByTagAndAttributes(@StepParameter(converter = IntegerConverter.class) final Integer nth,
@@ -519,7 +524,7 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
      * Finds an element by tag name and a set of attributes and corresponding
      * values, that has a child tag element of the specified type and having the
      * specified text
-     * 
+     *
      * @param tag
      *            the parent tag
      * @param attributeString
@@ -528,7 +533,6 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
      *            the child tag
      * @param childText
      *            the child's text
-     * 
      * @return the web element
      * @example FindParentByTagAndAttributes tag="table"
      *          attributes=[class="mytable"] ThatHasChild tag="caption"
@@ -607,7 +611,7 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
      * Finds an element by tag name and a set of attributes and corresponding
      * values, that has a child tag element of the specified type that has the
      * specified attributes..
-     * 
+     *
      * @param tag
      *            the parent tag
      * @param attributeString
@@ -616,7 +620,6 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
      *            the child tag
      * @param childAttributeString
      *            the child's attribute string
-     * 
      * @return the web element
      * @example FindParentByTagAndAttributes tag="table"
      *          attributes=[class="mytable"] ThatHasChild tag="caption"
@@ -764,10 +767,10 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
     /**
      * Checks that a list of WebElements only contains one (not empty and not
      * too many).
-     * 
-     * @param msg
-     * @param matchingElems
-     * @return
+     *
+     * @param msg a {@link java.lang.String} object.
+     * @param matchingElems a {@link java.util.List} object.
+     * @return a {@link org.openqa.selenium.WebElement} object.
      */
     public static WebElement checkForOneMatchingElement(final String msg, final List<WebElement> matchingElems) {
         WebElement rtn = null;
@@ -788,7 +791,7 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
 
     /**
      * Gets the element with text.
-     * 
+     *
      * @param type
      *            the type
      * @param text
@@ -813,7 +816,7 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
 
     /**
      * Find the element with id that has the text ....
-     * 
+     *
      * @example FindById msg_id and text = "Hello World"
      * @section Location
      * @param id
@@ -845,7 +848,7 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
     /**
      * From the current element, apply the xpath selecting the first child that
      * has the text ...
-     * 
+     *
      * @example FindFirstChildElementContainingText xpath="li//a" text =
      *          "Log Out"
      * @section Location
@@ -874,7 +877,7 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
 
     /**
      * Finds the first html tag that starts with the specified text
-     * 
+     *
      * @example FindTagElementStartingWithText tag="ul" text="list item itext"
      * @section Location
      * @param tag

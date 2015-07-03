@@ -27,6 +27,12 @@ import org.slf4j.LoggerFactory;
 
 import com.technophobia.substeps.model.Configuration;
 
+/**
+ * <p>WebdriverSubstepsPropertiesConfiguration class.</p>
+ *
+ * @author ian
+ * @version $Id: $Id
+ */
 public enum WebdriverSubstepsPropertiesConfiguration implements WebdriverSubstepsConfiguration {
 
     INSTANCE; // uninstantiable
@@ -83,55 +89,110 @@ public enum WebdriverSubstepsPropertiesConfiguration implements WebdriverSubstep
     }
 
 
+    /**
+     * <p>baseURL.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String baseURL() {
         return baseUrl;
     }
 
 
+    /**
+     * <p>driverType.</p>
+     *
+     * @return a {@link com.technophobia.webdriver.substeps.runner.DefaultDriverType} object.
+     */
     public DefaultDriverType driverType() {
         return driverType;
     }
 
 
+    /**
+     * <p>driverLocale.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String driverLocale() {
         return driverLocale;
     }
 
 
+    /**
+     * <p>shutDownWebdriver.</p>
+     *
+     * @return a boolean.
+     */
     public boolean shutDownWebdriver() {
         return shutdownWebdriver;
     }
 
 
+    /**
+     * <p>isJavascriptDisabledWithHTMLUnit.</p>
+     *
+     * @return a boolean.
+     */
     public boolean isJavascriptDisabledWithHTMLUnit() {
         return htmlunitDisableJs;
     }
 
 
+    /**
+     * <p>closeVisualWebDriveronFail.</p>
+     *
+     * @return a boolean.
+     */
     public boolean closeVisualWebDriveronFail() {
         return visualWebdriverCloseOnFail;
     }
 
 
+    /**
+     * <p>reuseWebDriver.</p>
+     *
+     * @return a boolean.
+     */
     public boolean reuseWebDriver() {
         return reuseWebdriver;
     }
 
 
+    /**
+     * <p>defaultTimeout.</p>
+     *
+     * @return a long.
+     */
     public long defaultTimeout() {
         return defaultWebDriverTimeoutSecs;
     }
 
 
+    /**
+     * <p>Getter for the field <code>htmlUnitProxyHost</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getHtmlUnitProxyHost() {
         return htmlUnitProxyHost;
     }
 
 
+    /**
+     * <p>Getter for the field <code>htmlUnitProxyPort</code>.</p>
+     *
+     * @return a {@link java.lang.Integer} object.
+     */
     public Integer getHtmlUnitProxyPort() {
         return htmlUnitProxyPort;
     }
 
+    /**
+     * <p>getWebDriverFactoryClass.</p>
+     *
+     * @return a {@link java.lang.Class} object.
+     */
     public Class<? extends WebDriverFactory> getWebDriverFactoryClass() {
         return webdriverFactoryClass;
     }

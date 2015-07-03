@@ -19,16 +19,26 @@
 package com.technophobia.webdriver.substeps.runner;
 
 /**
+ * <p>WebDriverSubstepsException class.</p>
+ *
  * @author imoore
- * 
+ * @version $Id: $Id
  */
 public class WebDriverSubstepsException extends RuntimeException {
 
+    /**
+     * <p>Constructor for WebDriverSubstepsException.</p>
+     */
     public WebDriverSubstepsException() {
         super();
     }
 
 
+    /**
+     * <p>Constructor for WebDriverSubstepsException.</p>
+     *
+     * @param msg a {@link java.lang.String} object.
+     */
     public WebDriverSubstepsException(final String msg) {
         super(msg);
 

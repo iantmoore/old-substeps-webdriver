@@ -22,10 +22,26 @@ import org.openqa.selenium.WebElement;
 
 import com.google.common.base.Predicate;
 
+/**
+ * <p>WebElementPredicate interface.</p>
+ *
+ * @author ian
+ * @version $Id: $Id
+ */
 public interface WebElementPredicate extends Predicate<WebElement> {
+    /**
+     * <p>getTagname.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     String getTagname();
 
 
+    /**
+     * <p>getDescription.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     String getDescription();
 
 }

@@ -33,21 +33,42 @@ import com.technophobia.substeps.runner.ProvidesScreenshot;
 import com.technophobia.webdriver.substeps.runner.DefaultExecutionSetupTearDown;
 import com.technophobia.webdriver.util.WebDriverContext;
 
+/**
+ * <p>Abstract AbstractWebDriverSubStepImplementations class.</p>
+ *
+ * @author ian
+ * @version $Id: $Id
+ */
 public abstract class AbstractWebDriverSubStepImplementations implements ProvidesScreenshot {
 
     private final Supplier<WebDriverContext> webDriverContextSupplier;
 
 
+    /**
+     * <p>Constructor for AbstractWebDriverSubStepImplementations.</p>
+     */
     public AbstractWebDriverSubStepImplementations() {
         this(DefaultExecutionSetupTearDown.currentWebDriverContext());
     }
 
 
+    /**
+     * <p>Constructor for AbstractWebDriverSubStepImplementations.</p>
+     *
+     * @param webDriverContextSupplier a {@link com.google.common.base.Supplier} object.
+     */
     public AbstractWebDriverSubStepImplementations(final Supplier<WebDriverContext> webDriverContextSupplier) {
         this.webDriverContextSupplier = webDriverContextSupplier;
     }
 
 
+    /**
+     * <p>elementHasExpectedAttributes.</p>
+     *
+     * @param e a {@link org.openqa.selenium.WebElement} object.
+     * @param expectedAttributes a {@link java.util.Map} object.
+     * @return a boolean.
+     */
     protected boolean elementHasExpectedAttributes(final WebElement e, final Map<String, String> expectedAttributes) {
         final Map<String, String> actualValues = new HashMap<String, String>();
 
@@ -65,16 +86,31 @@ public abstract class AbstractWebDriverSubStepImplementations implements Provide
     }
 
 
+    /**
+     * <p>webDriver.</p>
+     *
+     * @return a {@link org.openqa.selenium.WebDriver} object.
+     */
     protected WebDriver webDriver() {
         return this.webDriverContextSupplier.get().getWebDriver();
     }
 
 
+    /**
+     * <p>webDriverContext.</p>
+     *
+     * @return a {@link com.technophobia.webdriver.util.WebDriverContext} object.
+     */
     protected WebDriverContext webDriverContext() {
         return this.webDriverContextSupplier.get();
     }
 
 
+    /**
+     * <p>getScreenshotBytes.</p>
+     *
+     * @return an array of byte.
+     */
     public byte[] getScreenshotBytes() {
 
         final WebDriver webDriver = webDriver();

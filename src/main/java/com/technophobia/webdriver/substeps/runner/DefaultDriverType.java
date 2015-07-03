@@ -20,14 +20,19 @@ package com.technophobia.webdriver.substeps.runner;
 
 /**
  * TODO
- * 
+ *
  * @author imoore
- * 
+ * @version $Id: $Id
  */
 public enum DefaultDriverType implements DriverType {
 
 	FIREFOX(true), HTMLUNIT(false), CHROME(true), IE(true);
 
+	/**
+	 * <p>Constructor for DefaultDriverType.</p>
+	 *
+	 * @param visual a boolean.
+	 */
 	private DefaultDriverType(final boolean visual)
 	{
 		this.visual = visual;
@@ -35,6 +40,11 @@ public enum DefaultDriverType implements DriverType {
 
 	private boolean visual;
 
+	/**
+	 * <p>isVisual.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public boolean isVisual()
 	{
 		return visual;

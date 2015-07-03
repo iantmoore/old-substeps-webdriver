@@ -37,31 +37,60 @@ import com.google.common.collect.Maps;
 import com.technophobia.substeps.step.StepImplementationUtils;
 
 /**
- * 
+ * <p>Abstract WebDriverSubstepsBy class.</p>
+ *
  * @author imoore
- * 
+ * @version $Id: $Id
  */
 public abstract class WebDriverSubstepsBy {
 
     static final Logger logger = LoggerFactory.getLogger(WebDriverSubstepsBy.class);
 
 
+    /**
+     * <p>ByIdAndText.</p>
+     *
+     * @param id a {@link java.lang.String} object.
+     * @param text a {@link java.lang.String} object.
+     * @return a {@link com.technophobia.webdriver.util.WebDriverSubstepsBy.ByIdAndText} object.
+     */
     public static ByIdAndText ByIdAndText(final String id, final String text) {
         return new ByIdAndText(id, text);
     }
 
 
+    /**
+     * <p>ByIdAndCaseSensitiveText.</p>
+     *
+     * @param id a {@link java.lang.String} object.
+     * @param text a {@link java.lang.String} object.
+     * @return a {@link com.technophobia.webdriver.util.WebDriverSubstepsBy.ByIdAndText} object.
+     */
     public static ByIdAndText ByIdAndCaseSensitiveText(final String id, final String text) {
         return new ByIdAndText(id, text, true);
     }
 
 
+    /**
+     * <p>ByTagAndAttributes.</p>
+     *
+     * @param tagName a {@link java.lang.String} object.
+     * @param requiredAttributes a {@link java.util.Map} object.
+     * @return a {@link com.technophobia.webdriver.util.WebDriverSubstepsBy.ByTagAndAttributes} object.
+     */
     public static ByTagAndAttributes ByTagAndAttributes(final String tagName,
             final Map<String, String> requiredAttributes) {
         return new ByTagAndAttributes(tagName, requiredAttributes);
     }
 
 
+    /**
+     * <p>ByTagAndAttributes.</p>
+     *
+     * @param tagName a {@link java.lang.String} object.
+     * @param attributeString a {@link java.lang.String} object.
+     * @return a {@link com.technophobia.webdriver.util.WebDriverSubstepsBy.ByTagAndAttributes} object.
+     */
     public static ByTagAndAttributes ByTagAndAttributes(final String tagName, final String attributeString) {
 
         final Map<String, String> expectedAttributes = StepImplementationUtils.convertToMap(attributeString);
@@ -70,6 +99,14 @@ public abstract class WebDriverSubstepsBy {
     }
 
 
+    /**
+     * <p>NthByTagAndAttributes.</p>
+     *
+     * @param tagName a {@link java.lang.String} object.
+     * @param attributeString a {@link java.lang.String} object.
+     * @param nth a int.
+     * @return a {@link com.technophobia.webdriver.util.WebDriverSubstepsBy.ByTagAndAttributes} object.
+     */
     public static ByTagAndAttributes NthByTagAndAttributes(final String tagName, final String attributeString,
             final int nth) {
 
@@ -79,36 +116,84 @@ public abstract class WebDriverSubstepsBy {
     }
 
 
+    /**
+     * <p>ByCurrentWebElement.</p>
+     *
+     * @param elem a {@link org.openqa.selenium.WebElement} object.
+     * @return a {@link com.technophobia.webdriver.util.WebDriverSubstepsBy.ByCurrentWebElement} object.
+     */
     public static ByCurrentWebElement ByCurrentWebElement(final WebElement elem) {
         return new ByCurrentWebElement(elem);
     }
 
 
+    /**
+     * <p>ByTagAndWithText.</p>
+     *
+     * @param tag a {@link java.lang.String} object.
+     * @param text a {@link java.lang.String} object.
+     * @return a {@link com.technophobia.webdriver.util.WebDriverSubstepsBy.ByTagAndWithText} object.
+     */
     public static ByTagAndWithText ByTagAndWithText(final String tag, final String text) {
         return new ByTagAndWithText(tag, Matchers.equalToIgnoringCase(text));
     }
 
 
+    /**
+     * <p>ByTagContainingText.</p>
+     *
+     * @param tag a {@link java.lang.String} object.
+     * @param text a {@link java.lang.String} object.
+     * @return a {@link com.technophobia.webdriver.util.WebDriverSubstepsBy.ByTagAndWithText} object.
+     */
     public static ByTagAndWithText ByTagContainingText(final String tag, final String text) {
         return new ByTagAndWithText(tag, Matchers.containsString(text));
     }
 
 
+    /**
+     * <p>ByTagStartingWithText.</p>
+     *
+     * @param tag a {@link java.lang.String} object.
+     * @param text a {@link java.lang.String} object.
+     * @return a {@link com.technophobia.webdriver.util.WebDriverSubstepsBy.ByTagAndWithText} object.
+     */
     public static ByTagAndWithText ByTagStartingWithText(final String tag, final String text) {
         return new ByTagAndWithText(tag, Matchers.startsWith(text));
     }
 
 
+    /**
+     * <p>ByIdContainingText.</p>
+     *
+     * @param id a {@link java.lang.String} object.
+     * @param text a {@link java.lang.String} object.
+     * @return a {@link com.technophobia.webdriver.util.WebDriverSubstepsBy.ByIdContainingText} object.
+     */
     public static ByIdContainingText ByIdContainingText(final String id, final String text) {
         return new ByIdContainingText(id, text);
     }
 
 
+    /**
+     * <p>ByXpathContainingText.</p>
+     *
+     * @param xpath a {@link java.lang.String} object.
+     * @param text a {@link java.lang.String} object.
+     * @return a {@link com.technophobia.webdriver.util.WebDriverSubstepsBy.BySomethingContainingText} object.
+     */
     public static BySomethingContainingText ByXpathContainingText(final String xpath, final String text) {
         return new BySomethingContainingText(By.xpath(xpath), text);
     }
 
 
+    /**
+     * <p>elementHasExpectedAttributes.</p>
+     *
+     * @param e a {@link org.openqa.selenium.WebElement} object.
+     * @param expectedAttributes a {@link java.util.Map} object.
+     * @return a boolean.
+     */
     protected static boolean elementHasExpectedAttributes(final WebElement e,
             final Map<String, String> expectedAttributes) {
         final Map<String, String> actualValues = new HashMap<String, String>();

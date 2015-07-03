@@ -47,6 +47,12 @@ import com.technophobia.webdriver.substeps.runner.DefaultExecutionSetupTearDown;
 import com.technophobia.webdriver.util.WebDriverContext;
 import com.technophobia.webdriver.util.WebDriverSubstepsBy;
 
+/**
+ * <p>AssertionWebDriverSubStepImplementations class.</p>
+ *
+ * @author ian
+ * @version $Id: $Id
+ */
 @StepImplementations(requiredInitialisationClasses = DefaultExecutionSetupTearDown.class)
 public class AssertionWebDriverSubStepImplementations extends AbstractWebDriverSubStepImplementations {
 
@@ -55,11 +61,19 @@ public class AssertionWebDriverSubStepImplementations extends AbstractWebDriverS
     private final FinderWebDriverSubStepImplementations finder = new FinderWebDriverSubStepImplementations();
 
 
+    /**
+     * <p>Constructor for AssertionWebDriverSubStepImplementations.</p>
+     */
     public AssertionWebDriverSubStepImplementations() {
         super();
     }
 
 
+    /**
+     * <p>Constructor for AssertionWebDriverSubStepImplementations.</p>
+     *
+     * @param webDriverContextSupplier a {@link com.google.common.base.Supplier} object.
+     */
     public AssertionWebDriverSubStepImplementations(final Supplier<WebDriverContext> webDriverContextSupplier) {
         super(webDriverContextSupplier);
     }
@@ -67,7 +81,7 @@ public class AssertionWebDriverSubStepImplementations extends AbstractWebDriverS
 
     /**
      * Check that the current element has the expected text value
-     * 
+     *
      * @example AssertCurrentElement text="Hello World!"
      * @section Assertions
      * @param expected
@@ -82,7 +96,7 @@ public class AssertionWebDriverSubStepImplementations extends AbstractWebDriverS
 
     /**
      * Check that the current element contains the specified text
-     * 
+     *
      * @example AssertCurrentElement text contains "Hello world"
      * @section Assertions
      * @param expected
@@ -97,10 +111,9 @@ public class AssertionWebDriverSubStepImplementations extends AbstractWebDriverS
 
     /**
      * Check that the current element has the specified attribute and value
-     * 
+     *
      * @example AssertCurrentElement attribute="class" value="icon32x32"
      * @section Assertions
-     * 
      * @param attribute
      *            the attribute name
      * @param expected
@@ -118,7 +131,7 @@ public class AssertionWebDriverSubStepImplementations extends AbstractWebDriverS
     /**
      * Check that any of the html tags have the specified attribute name and
      * value
-     * 
+     *
      * @example AssertTagElementContainsText tag="ul" attributeName="class"
      *          attributeValue="a_list"
      * @section Assertions
@@ -152,7 +165,7 @@ public class AssertionWebDriverSubStepImplementations extends AbstractWebDriverS
 
     /**
      * Check that the page title is ....
-     * 
+     *
      * @example AssertPageTitle is "My Home Page"
      * @section Assertions
      * @param expectedTitle
@@ -167,9 +180,8 @@ public class AssertionWebDriverSubStepImplementations extends AbstractWebDriverS
 
     /**
      * Simple text search on page source
-     * 
+     *
      * @example AssertPageSourceContains "foobar"
-     * 
      * @param expected
      *            the text you expect to find in the page source - this can
      *            include quotes.
@@ -186,7 +198,7 @@ public class AssertionWebDriverSubStepImplementations extends AbstractWebDriverS
 
     /**
      * Check that the current element, a checkbox is checked or not
-     * 
+     *
      * @example AssertCheckBox checked=true/false
      * @section Assertions
      * @param checkedString
@@ -212,7 +224,7 @@ public class AssertionWebDriverSubStepImplementations extends AbstractWebDriverS
 
     /**
      * Check that the current element, a radio button, is checked or not
-     * 
+     *
      * @example AssertRadioButton checked=true/false
      * @section Assertions
      * @param checkedString
@@ -238,14 +250,13 @@ public class AssertionWebDriverSubStepImplementations extends AbstractWebDriverS
 
     /**
      * Check that the current element has the specified attributes
-     * 
+     *
      * @example AssertCurrentElement has
      *          attributes=[type="submit",value="Search"]
      * @section Assertions
      * @param attributeString
      *            comma separated list of attributes and quoted values
      */
-
     @Step("AssertCurrentElement has attributes=\\[(.*)\\]")
     public void assertCurrentElementHasAttributes(final String attributeString) {
 
@@ -261,10 +272,10 @@ public class AssertionWebDriverSubStepImplementations extends AbstractWebDriverS
 
     /**
      * Utility method to check that an element is of a particular tag and type
-     * 
-     * @param elem
-     * @param tag
-     * @param type
+     *
+     * @param elem a {@link org.openqa.selenium.WebElement} object.
+     * @param tag a {@link java.lang.String} object.
+     * @param type a {@link java.lang.String} object.
      */
     public static void assertElementIs(final WebElement elem, final String tag, final String type) {
 
@@ -281,10 +292,9 @@ public class AssertionWebDriverSubStepImplementations extends AbstractWebDriverS
 
     /**
      * Utility method to check that an element is of a particular tag
-     * 
-     * @param elem
-     * @param tag
-     * @param type
+     *
+     * @param elem a {@link org.openqa.selenium.WebElement} object.
+     * @param tag a {@link java.lang.String} object.
      */
     public static void assertElementIs(final WebElement elem, final String tag) {
         assertElementIs(elem, tag, null);
@@ -294,9 +304,8 @@ public class AssertionWebDriverSubStepImplementations extends AbstractWebDriverS
     /**
      * Grab the text of an element (identified by id) and save it for the
      * duration of this scenario
-     * 
+     *
      * @example RememberForScenario textFrom "projectName" as "savedProjectName"
-     * 
      * @param elementId
      *            The ID of the HTML element
      * @param nameToSaveAs
@@ -314,14 +323,12 @@ public class AssertionWebDriverSubStepImplementations extends AbstractWebDriverS
     /**
      * Compare the text of an element (identified by ID) to a value previously
      * remembered
-     * 
+     *
      * @example AssertDifferent rememberedValue "savedProjectName"
      *          compareToElement "projectName"
-     * 
      * @param elementId
      *            The ID of the HTML element
-     * @param nameToSaveAs
-     *            The variable name to save the text as for later retrieval
+     * @param rememberedValueName a {@link java.lang.String} object.
      */
     @Step("AssertDifferent rememberedValue \"([^\"]*)\" compareToElement \"([^\"]*)\"")
     public void assertDifferent(final String rememberedValueName, final String elementId) {
@@ -345,14 +352,12 @@ public class AssertionWebDriverSubStepImplementations extends AbstractWebDriverS
     /**
      * Compare the text of an element (identified by ID) to a value previously
      * remembered - assert they're the same
-     * 
+     *
      * @example AssertSame rememberedValue "savedProjectName" compareToElement
      *          "projectName"
-     * 
      * @param elementId
      *            The ID of the HTML element
-     * @param nameToSaveAs
-     *            The variable name to save the text as for later retrieval
+     * @param rememberedValueName a {@link java.lang.String} object.
      */
     @Step("AssertSame rememberedValue \"([^\"]*)\" compareToElement \"([^\"]*)\"")
     public void assertSame(final String rememberedValueName, final String elementId) {
@@ -376,7 +381,7 @@ public class AssertionWebDriverSubStepImplementations extends AbstractWebDriverS
     /**
      * Asserts that an element (identified by ID) eventually gets some text
      * inserted into it (by JavaScript, probably)
-     * 
+     *
      * @example AssertEventuallyNotEmpty mySpan
      * @param elementId
      *            HTML ID of element
@@ -390,7 +395,7 @@ public class AssertionWebDriverSubStepImplementations extends AbstractWebDriverS
     /**
      * Asserts that an element (identified by ID) eventually gets some specific
      * text inserted into it (by JavaScript, probably)
-     * 
+     *
      * @example AssertEventuallyContains mySpanId "text I eventually expect"
      * @section Assertions
      * @param elementId
@@ -408,10 +413,10 @@ public class AssertionWebDriverSubStepImplementations extends AbstractWebDriverS
 
     /**
      * Assert that the specified text is not found within the page
-     * 
+     *
      * @example AssertNotPresent text="undesirable text"
      * @section Assertions
-     * @param text
+     * @param text a {@link java.lang.String} object.
      */
     @Step("AssertNotPresent text=\"([^\"]*)\"")
     public void assertNotPresent(final String text) {
@@ -422,8 +427,7 @@ public class AssertionWebDriverSubStepImplementations extends AbstractWebDriverS
 
     /**
      * Wait for an element to contain some (any) text
-     * 
-     * @example
+     *
      * @param by
      *            WebDriver By object that identifies the element
      * @return the web element

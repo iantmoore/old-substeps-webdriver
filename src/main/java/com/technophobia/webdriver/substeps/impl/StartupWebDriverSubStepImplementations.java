@@ -27,15 +27,29 @@ import com.technophobia.webdriver.substeps.runner.DefaultExecutionSetupTearDown;
 import com.technophobia.webdriver.substeps.runner.WebDriverFactory;
 import com.technophobia.webdriver.util.WebDriverContext;
 
+/**
+ * <p>StartupWebDriverSubStepImplementations class.</p>
+ *
+ * @author ian
+ * @version $Id: $Id
+ */
 @StepImplementations(requiredInitialisationClasses = DefaultExecutionSetupTearDown.class)
 public class StartupWebDriverSubStepImplementations extends
         AbstractWebDriverSubStepImplementations {
 
+    /**
+     * <p>Constructor for StartupWebDriverSubStepImplementations.</p>
+     */
     public StartupWebDriverSubStepImplementations() {
         super();
     }
 
 
+    /**
+     * <p>Constructor for StartupWebDriverSubStepImplementations.</p>
+     *
+     * @param webDriverContextSupplier a {@link com.google.common.base.Supplier} object.
+     */
     public StartupWebDriverSubStepImplementations(
             final Supplier<WebDriverContext> webDriverContextSupplier) {
         super(webDriverContextSupplier);
@@ -44,7 +58,7 @@ public class StartupWebDriverSubStepImplementations extends
 
     /**
      * Starts a new web driver session
-     * 
+     *
      * @example Startup
      * @section Startup / Shutodwn
      */
@@ -57,7 +71,7 @@ public class StartupWebDriverSubStepImplementations extends
 
     /**
      * Shuts down the current web driver session
-     * 
+     *
      * @example Shutdown
      * @section Startup / Shutodwn
      */

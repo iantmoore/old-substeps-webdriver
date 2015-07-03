@@ -38,14 +38,28 @@ import com.technophobia.webdriver.substeps.runner.DefaultExecutionSetupTearDown;
 import com.technophobia.webdriver.util.WebDriverContext;
 import com.technophobia.webdriver.util.WebDriverSubstepsBy;
 
+/**
+ * <p>TableSubStepImplementations class.</p>
+ *
+ * @author ian
+ * @version $Id: $Id
+ */
 @StepImplementations(requiredInitialisationClasses = DefaultExecutionSetupTearDown.class)
 public class TableSubStepImplementations extends AbstractWebDriverSubStepImplementations {
 
+    /**
+     * <p>Constructor for TableSubStepImplementations.</p>
+     */
     public TableSubStepImplementations() {
         super();
     }
 
 
+    /**
+     * <p>Constructor for TableSubStepImplementations.</p>
+     *
+     * @param webDriverContextSupplier a {@link com.google.common.base.Supplier} object.
+     */
     public TableSubStepImplementations(final Supplier<WebDriverContext> webDriverContextSupplier) {
         super(webDriverContextSupplier);
     }
@@ -73,14 +87,14 @@ public class TableSubStepImplementations extends AbstractWebDriverSubStepImpleme
     /**
      * Locates the table body row, assuming that the table has already been
      * located Row 1 is the first
-     * <tr>
-     * beneath a <tbody>
-     * 
+     * &lt;tr&gt;
+     * beneath a &lt;tbody&gt;
+     *
      * @example FindTableBodyRow row 3
      * @section Table
-     * 
      * @param row
      *            1 based row index
+     * @return a {@link org.openqa.selenium.WebElement} object.
      */
     @Step("FindTableBodyRow row ([^\"]*)")
     public WebElement findTableBodyRow(@StepParameter(converter = IntegerConverter.class) final Integer row) {
@@ -138,12 +152,11 @@ public class TableSubStepImplementations extends AbstractWebDriverSubStepImpleme
     /**
      * Check that a table cell contains the specified text using a 1 based
      * index. Row 1 is the first
-     * <tr>
-     * beneath a <tbody>
-     * 
+     * &lt;tr&gt;
+     * beneath a &lt;tbody&gt;
+     *
      * @example AssertTableValue column 2, row 3 contains text "Hello Bob"
      * @section Table
-     * 
      * @param column
      *            1 based column index
      * @param row
@@ -198,6 +211,14 @@ public class TableSubStepImplementations extends AbstractWebDriverSubStepImpleme
     }
 
 
+    /**
+     * <p>getValueInResultsTable.</p>
+     *
+     * @param tbody a {@link org.openqa.selenium.WebElement} object.
+     * @param col a int.
+     * @param row a int.
+     * @return a {@link java.lang.String} object.
+     */
     public String getValueInResultsTable(final WebElement tbody, final int col, final int row) {
 
         final WebElement rowElement = getTableRow(tbody, row);
@@ -221,15 +242,14 @@ public class TableSubStepImplementations extends AbstractWebDriverSubStepImpleme
      * Find a row in a table where columns exist that contain the specified
      * text. Not all columns of the table need to specified, however the order
      * is important. Finding multiple matching results will result in an error.
-     * 
+     *
      * Once the row has been located, other FindInRow methods can be used that
      * may in turn refer to and set the 'Current Element', this method does not
      * set the current element for that reason.
-     * 
+     *
      * @example FindTableRowWithColumnsThatContainText
      *          ["My Name","Where it all began...","December 19 2012"]
      * @section Table
-     * 
      * @param columnText
      *            A comma delimitted list of column values, each column can be
      *            double quoted
@@ -296,7 +316,7 @@ public class TableSubStepImplementations extends AbstractWebDriverSubStepImpleme
 
     /**
      * Find an element within a table row by tag and attributes.
-     * 
+     *
      * @example FindElementInRow ByTagAndAttributes tag="a"
      *          attributes=[class="link-class",....]
      * @section Table
@@ -317,7 +337,7 @@ public class TableSubStepImplementations extends AbstractWebDriverSubStepImpleme
     /**
      * Find a link (anchor) element within a table row using the link text as a
      * discriminator.
-     * 
+     *
      * @example FindElementInRow linkText="View"
      * @section Table
      * @param linkText

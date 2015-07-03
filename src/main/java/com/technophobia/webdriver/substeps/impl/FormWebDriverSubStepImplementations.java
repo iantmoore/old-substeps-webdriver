@@ -38,6 +38,12 @@ import com.technophobia.substeps.model.parameter.BooleanConverter;
 import com.technophobia.webdriver.substeps.runner.DefaultExecutionSetupTearDown;
 import com.technophobia.webdriver.util.WebDriverContext;
 
+/**
+ * <p>FormWebDriverSubStepImplementations class.</p>
+ *
+ * @author ian
+ * @version $Id: $Id
+ */
 @StepImplementations(requiredInitialisationClasses = DefaultExecutionSetupTearDown.class)
 public class FormWebDriverSubStepImplementations extends
         AbstractWebDriverSubStepImplementations {
@@ -50,6 +56,9 @@ public class FormWebDriverSubStepImplementations extends
     private final ActionWebDriverSubStepImplementations actions;
 
 
+    /**
+     * <p>Constructor for FormWebDriverSubStepImplementations.</p>
+     */
     public FormWebDriverSubStepImplementations() {
         super();
         this.locator = new FinderWebDriverSubStepImplementations();
@@ -57,6 +66,13 @@ public class FormWebDriverSubStepImplementations extends
     }
 
 
+    /**
+     * <p>Constructor for FormWebDriverSubStepImplementations.</p>
+     *
+     * @param actions a {@link com.technophobia.webdriver.substeps.impl.ActionWebDriverSubStepImplementations} object.
+     * @param locator a {@link com.technophobia.webdriver.substeps.impl.FinderWebDriverSubStepImplementations} object.
+     * @param driverContextSupplier a {@link com.google.common.base.Supplier} object.
+     */
     public FormWebDriverSubStepImplementations(
             final ActionWebDriverSubStepImplementations actions,
             final FinderWebDriverSubStepImplementations locator,
@@ -70,7 +86,7 @@ public class FormWebDriverSubStepImplementations extends
     /**
      * Submit the form of the current element. NB using click is preferable as
      * javascript may be executed on click, which this method would bypass
-     * 
+     *
      * @example Submit
      * @section Clicks
      */
@@ -85,7 +101,7 @@ public class FormWebDriverSubStepImplementations extends
     /**
      * Enters text to the current element, without clearing any current content
      * first
-     * 
+     *
      * @example SendKeys hello
      * @section Forms
      * @param value
@@ -100,7 +116,7 @@ public class FormWebDriverSubStepImplementations extends
 
     /**
      * Find an element by id, clear any text from the element, and enter text
-     * 
+     *
      * @example ClearAndSendKeys "fred" to id username
      * @section Forms
      * @param id
@@ -118,7 +134,7 @@ public class FormWebDriverSubStepImplementations extends
 
     /**
      * Clear any text from the element, and enter text (to the current element)
-     * 
+     *
      * @example ClearAndSendKeys "hello"
      * @section Forms
      * @param value
@@ -135,7 +151,7 @@ public class FormWebDriverSubStepImplementations extends
 
     /**
      * Select a value in the option list that has the id
-     * 
+     *
      * @example ChooseOption "fred" in id usersList
      * @section Forms
      * @param value
@@ -156,8 +172,10 @@ public class FormWebDriverSubStepImplementations extends
 
 
     /**
-     * @param value
-     * @param selectElement
+     * <p>chooseOptionByTextInSelect.</p>
+     *
+     * @param value a {@link java.lang.String} object.
+     * @param selectElement a {@link org.openqa.selenium.WebElement} object.
      */
     public void chooseOptionByTextInSelect(final String value,
             final WebElement selectElement) {
@@ -173,13 +191,11 @@ public class FormWebDriverSubStepImplementations extends
     /**
      * Select a value in the option list in the current element, a Find
      * operation is required immediatebly before
-     * 
+     *
      * @example ChooseOption "fred" in current element
      * @section Forms
      * @param value
      *            the value
-     * @param id
-     *            the id
      */
     @Step("ChooseOption \"([^\"]*)\" in current element")
     public void selectValueInCurrentElement(final String value) {
@@ -203,6 +219,12 @@ public class FormWebDriverSubStepImplementations extends
     }
 
 
+    /**
+     * <p>assertOptionIsSelected.</p>
+     *
+     * @param id a {@link java.lang.String} object.
+     * @param value a {@link java.lang.String} object.
+     */
     @Step("AssertSelect id=\"([^\"]*)\" text=\"([^\"]*)\" is currently selected")
     public void assertOptionIsSelected(final String id, final String value) {
         logger.debug("Asserting select box with id " + id + " has option "
@@ -221,6 +243,12 @@ public class FormWebDriverSubStepImplementations extends
     }
 
 
+    /**
+     * <p>assertOptionIsNotSelected.</p>
+     *
+     * @param id a {@link java.lang.String} object.
+     * @param value a {@link java.lang.String} object.
+     */
     @Step("AssertSelect id=\"([^\"]*)\" text=\"([^\"]*)\" is not currently selected")
     public void assertOptionIsNotSelected(final String id, final String value) {
         logger.debug("Asserting select box with id " + id + " has option "
@@ -239,12 +267,12 @@ public class FormWebDriverSubStepImplementations extends
 
 
     /**
-     * Use: FindRadioButton inside tag="label" with label="<radio_button_text>"
-     * + SetRadioButton checked=<true> in preference as this will locate the
+     * Use: FindRadioButton inside tag="label" with label="&lt;radio_button_text&gt;"
+     * + SetRadioButton checked=&lt;true&gt; in preference as this will locate the
      * radio button by visible text rather than the underlying value.
-     * 
+     *
      * Locates a radio button with a specific value and checks the radio button.
-     * 
+     *
      * @example SetRadioButton name=opt_in, value=OFF, checked=true
      * @section Forms
      * @param name
@@ -281,7 +309,7 @@ public class FormWebDriverSubStepImplementations extends
 
     /**
      * Sets the value of the current element, assumed to be a radio button to...
-     * 
+     *
      * @example SetRadioButton checked=true
      * @section Forms
      * @param checked
@@ -304,7 +332,7 @@ public class FormWebDriverSubStepImplementations extends
 
     /**
      * Sets the value of the current element, assumed to be a checkbox to...
-     * 
+     *
      * @example SetCheckedBox checked=true
      * @section Forms
      * @param checked
@@ -327,7 +355,7 @@ public class FormWebDriverSubStepImplementations extends
 
     /**
      * Sets the value of a radio button
-     * 
+     *
      * @example SetRadioButton name="opt_in", text="radio button text"
      * @section Forms
      * @param name
@@ -354,7 +382,7 @@ public class FormWebDriverSubStepImplementations extends
 
     /**
      * Asserts a value of a radio button
-     * 
+     *
      * @example AssertRadioButton name="radio_btn_name", text="text",
      *          checked="true"
      * @section Forms
@@ -418,7 +446,7 @@ public class FormWebDriverSubStepImplementations extends
 
     /**
      * Sets a check box value; deprecated use
-     * 
+     *
      * @example SetCheckBox name="accept", checked=true
      * @section Forms
      * @param name
@@ -447,8 +475,7 @@ public class FormWebDriverSubStepImplementations extends
 
     /**
      * Sets the checkbox value.
-     * 
-     * @example
+     *
      * @param checkboxField
      *            the checkbox field
      * @param value

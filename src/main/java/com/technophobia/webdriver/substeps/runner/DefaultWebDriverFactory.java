@@ -35,20 +35,39 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 
+/**
+ * <p>DefaultWebDriverFactory class.</p>
+ *
+ * @author ian
+ * @version $Id: $Id
+ */
 public class DefaultWebDriverFactory implements WebDriverFactory {
 
     private static final Logger LOG = LoggerFactory.getLogger(DefaultWebDriverFactory.class);
 
     private final WebdriverSubstepsConfiguration configuration;
 
+    /**
+     * <p>Constructor for DefaultWebDriverFactory.</p>
+     */
     public DefaultWebDriverFactory() {
         this(WebdriverSubstepsPropertiesConfiguration.INSTANCE);
     }
 
+    /**
+     * <p>Constructor for DefaultWebDriverFactory.</p>
+     *
+     * @param configuration a {@link com.technophobia.webdriver.substeps.runner.WebdriverSubstepsConfiguration} object.
+     */
     public DefaultWebDriverFactory(WebdriverSubstepsConfiguration configuration) {
         this.configuration = configuration;
     }
 
+    /**
+     * <p>createWebDriver.</p>
+     *
+     * @return a {@link org.openqa.selenium.WebDriver} object.
+     */
     public WebDriver createWebDriver() {
 
         final WebDriver webDriver;
@@ -103,10 +122,16 @@ public class DefaultWebDriverFactory implements WebDriverFactory {
 
     }
 
+    /**
+     * <p>driverType.</p>
+     *
+     * @return a {@link com.technophobia.webdriver.substeps.runner.DriverType} object.
+     */
     public DriverType driverType() {
         return configuration.driverType();
     }
 
+    /** {@inheritDoc} */
     public void shutdownWebDriver(WebDriverContext webDriverContext) {
 
         LOG.debug("Shutting WebDriver down");
@@ -117,6 +142,7 @@ public class DefaultWebDriverFactory implements WebDriverFactory {
         }
     }
 
+    /** {@inheritDoc} */
     public void resetWebDriver(WebDriverContext webDriverContext) {
 
         LOG.debug("Resetting WebDriver");
