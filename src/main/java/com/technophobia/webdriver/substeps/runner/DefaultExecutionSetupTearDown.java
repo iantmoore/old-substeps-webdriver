@@ -134,6 +134,9 @@ public class DefaultExecutionSetupTearDown {
      */
     @BeforeEveryScenario
     public final void basePreScenarioSetup() {
+
+        logger.trace("basePreScenarioSetup");
+
         startTimeMillis = System.currentTimeMillis();
 
         final WebDriverContext webDriverContext = webDriverContextSupplier.get();
@@ -142,6 +145,7 @@ public class DefaultExecutionSetupTearDown {
 
         if (createNewWebDriver) {
             WebDriverFactory factory = webDriverFactorySupplier.get();
+
             webDriverContextSupplier.set(new WebDriverContext(factory.driverType(), factory.createWebDriver()));
         }
     }
@@ -229,6 +233,8 @@ public class DefaultExecutionSetupTearDown {
                 doStartup = false;
             }
         }
+
+        logger.trace("shouldStartup returning: " + doStartup);
 
         return doStartup;
     }

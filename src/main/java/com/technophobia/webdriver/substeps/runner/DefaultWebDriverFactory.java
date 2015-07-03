@@ -70,15 +70,17 @@ public class DefaultWebDriverFactory implements WebDriverFactory {
      */
     public WebDriver createWebDriver() {
 
+        LOG.debug("DefaultWebDriverFactory: createWebDriver");
+
         final WebDriver webDriver;
 
         switch (configuration.driverType()) {
             case FIREFOX: {
-                webDriver = new FirefoxDriver();
+                webDriver = new FirefoxDriver(DesiredCapabilities.firefox());
                 break;
             }
             case HTMLUNIT: {
-                final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.FIREFOX_3_6);
+                final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.CHROME);
                 htmlUnitDriver.setJavascriptEnabled(!configuration.isJavascriptDisabledWithHTMLUnit());
 
                 // Run via a proxy - HTML unit only for timebeing
