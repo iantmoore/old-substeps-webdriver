@@ -69,8 +69,7 @@ public class DefaultExecutionSetupTearDownTest {
 
         this.std.basePostScenariotearDown();
 
-        verify(this.options).deleteAllCookies();
-        verify(this.webDriver).quit();
+        verify(this.factory).shutdownWebDriver(context);
     }
 
 
@@ -89,8 +88,7 @@ public class DefaultExecutionSetupTearDownTest {
 
         this.std.basePostScenariotearDown();
 
-        verify(this.options).deleteAllCookies();
-        verify(this.webDriver).quit();
+        verify(this.factory).shutdownWebDriver(context);
     }
 
 
@@ -109,8 +107,7 @@ public class DefaultExecutionSetupTearDownTest {
 
         this.std.basePostScenariotearDown();
 
-        verify(this.options).deleteAllCookies();
-        verify(this.webDriver).quit();
+        verify(this.factory).shutdownWebDriver(context);
     }
 
 
@@ -130,8 +127,7 @@ public class DefaultExecutionSetupTearDownTest {
 
         this.std.basePostScenariotearDown();
 
-        verify(this.options).deleteAllCookies();
-        verify(this.webDriver, never()).quit();
+        verify(this.factory).resetWebDriver(context);
     }
 
 
@@ -152,8 +148,7 @@ public class DefaultExecutionSetupTearDownTest {
 
         this.std.basePostScenariotearDown();
 
-        verify(this.options).deleteAllCookies();
-        verify(this.webDriver).quit();
+        verify(this.factory).shutdownWebDriver(context);
     }
 
 
@@ -174,8 +169,7 @@ public class DefaultExecutionSetupTearDownTest {
 
         this.std.basePostScenariotearDown();
 
-        verify(this.options).deleteAllCookies();
-        verify(this.webDriver, never()).quit();
+        verify(this.factory).resetWebDriver(context);
     }
 
 
@@ -196,8 +190,8 @@ public class DefaultExecutionSetupTearDownTest {
 
         this.std.basePostScenariotearDown();
 
-        verify(this.options).deleteAllCookies();
-        verify(this.webDriver, never()).quit();
+        verify(this.factory).resetWebDriver(context);
+
     }
 
 
@@ -217,8 +211,7 @@ public class DefaultExecutionSetupTearDownTest {
 
         this.std.basePostScenariotearDown();
 
-        verify(this.options).deleteAllCookies();
-        verify(this.webDriver, never()).quit();
+        verify(this.factory).resetWebDriver(context);
     }
 
 

@@ -19,9 +19,12 @@
 package com.technophobia.webdriver.substeps.impl;
 
 import com.google.common.base.Supplier;
+import com.technophobia.substeps.model.Scope;
 import com.technophobia.substeps.model.SubSteps.Step;
 import com.technophobia.substeps.model.SubSteps.StepImplementations;
+import com.technophobia.substeps.runner.ExecutionContext;
 import com.technophobia.webdriver.substeps.runner.DefaultExecutionSetupTearDown;
+import com.technophobia.webdriver.substeps.runner.WebDriverFactory;
 import com.technophobia.webdriver.util.WebDriverContext;
 
 @StepImplementations(requiredInitialisationClasses = DefaultExecutionSetupTearDown.class)
@@ -60,6 +63,9 @@ public class StartupWebDriverSubStepImplementations extends
      */
     @Step("Shutdown")
     public void shutdown() {
-        webDriverContext().shutdownWebDriver();
+
+        WebDriverFactory factory = (WebDriverFactory)ExecutionContext.get(Scope.SUITE, WebDriverFactory.WEB_DRIVER_FACTORY_KEY);
+
+        factory.shutdownWebDriver(webDriverContext());
     }
 }

@@ -43,6 +43,9 @@ public class DefaultExecutionSetupTearDown {
     private static final MutableSupplier<WebDriverContext> webDriverContextSupplier = new ExecutionContextSupplier<WebDriverContext>(
             Scope.SUITE, WebDriverContext.EXECUTION_CONTEXT_KEY);
 
+    private final MutableSupplier<WebDriverFactory> webDriverFactorySupplier = new ExecutionContextSupplier<WebDriverFactory>(
+            Scope.SUITE, WebDriverFactory.WEB_DRIVER_FACTORY_KEY);
+
 
     public static Supplier<WebDriverContext> currentWebDriverContext() {
         return webDriverContextSupplier;
@@ -89,7 +92,8 @@ public class DefaultExecutionSetupTearDown {
 
 
         WebDriverFactory factory = createWebDriverFactory();
-        ExecutionContext.put(Scope.SUITE, WebDriverFactory.WEB_DRIVER_FACTORY_KEY, factory);
+        webDriverFactorySupplier.set(factory);
+
     }
 
 
@@ -102,7 +106,7 @@ public class DefaultExecutionSetupTearDown {
         boolean createNewWebDriver = shouldStartup(webDriverContext);
 
         if (createNewWebDriver) {
-            WebDriverFactory factory = (WebDriverFactory) ExecutionContext.get(Scope.SUITE, WebDriverFactory.WEB_DRIVER_FACTORY_KEY);
+            WebDriverFactory factory = webDriverFactorySupplier.get();
             webDriverContextSupplier.set(new WebDriverContext(factory.driverType(), factory.createWebDriver()));
         }
     }
@@ -111,17 +115,18 @@ public class DefaultExecutionSetupTearDown {
     @AfterEveryScenario
     public final void basePostScenariotearDown() {
 
-
         final WebDriverContext webDriverContext = webDriverContextSupplier.get();
 
         if (webDriverContext != null) {
 
             boolean doShutdown = shouldShutdown(webDriverContext);
+            WebDriverFactory factory = webDriverFactorySupplier.get();
 
             if (doShutdown) {
-                webDriverContext.shutdownWebDriver();
-            } else {
-                webDriverContext.resetWebDriver();
+                factory.shutdownWebDriver(webDriverContext);
+            }
+            else {
+                factory.resetWebDriver(webDriverContext);
             }
         }
 

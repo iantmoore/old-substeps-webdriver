@@ -21,6 +21,7 @@ package com.technophobia.webdriver.substeps.runner;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
+import com.technophobia.webdriver.util.WebDriverContext;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -104,6 +105,29 @@ public class DefaultWebDriverFactory implements WebDriverFactory {
 
     public DriverType driverType() {
         return configuration.driverType();
+    }
+
+    public void shutdownWebDriver(WebDriverContext webDriverContext) {
+
+        LOG.debug("Shutting WebDriver down");
+        WebDriver webDriver = webDriverContext.getWebDriver();
+        if (webDriver != null) {
+            webDriver.manage().deleteAllCookies();
+            webDriver.quit();
+        }
+    }
+
+    public void resetWebDriver(WebDriverContext webDriverContext) {
+
+        LOG.debug("Resetting WebDriver");
+        WebDriver webDriver = webDriverContext.getWebDriver();
+
+        // this was the default behaviour previously in Webdriver context
+
+        if(webDriver != null) {
+            webDriver.manage().deleteAllCookies();
+        }
+
     }
 
     /**

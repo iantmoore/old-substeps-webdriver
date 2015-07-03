@@ -48,6 +48,7 @@ public class WebDriverContext {
     private WebElement currentElement = null;
     private boolean failed = false;
 
+    // TODO - this should be put in the execution context....
     private Map<String, WebElement> elementStash = null;
 
 
@@ -75,23 +76,6 @@ public class WebDriverContext {
     public DriverType getDriverType() {
         return this.driverType;
     }
-
-
-    public void shutdownWebDriver() {
-        logger.debug("Shutting WebDriver down");
-        if (this.webDriver != null) {
-            this.webDriver.manage().deleteAllCookies();
-            this.webDriver.quit();
-        }
-    }
-
-    public void resetWebDriver() {
-        logger.debug("Resetting WebDriver");
-        if(this.webDriver != null) {
-            this.webDriver.manage().deleteAllCookies();
-        }
-    }
-
 
     public boolean hasFailed() {
         return this.failed;
