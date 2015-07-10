@@ -145,7 +145,7 @@ public class DefaultWebDriverFactory implements WebDriverFactory {
     }
 
     /** {@inheritDoc} */
-    public void resetWebDriver(WebDriverContext webDriverContext) {
+    public boolean resetWebDriver(WebDriverContext webDriverContext) {
 
         LOG.debug("Resetting WebDriver");
         WebDriver webDriver = webDriverContext.getWebDriver();
@@ -155,7 +155,7 @@ public class DefaultWebDriverFactory implements WebDriverFactory {
         if(webDriver != null) {
             webDriver.manage().deleteAllCookies();
         }
-
+        return true;
     }
 
     /**

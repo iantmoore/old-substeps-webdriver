@@ -168,7 +168,10 @@ public class DefaultExecutionSetupTearDown {
                 factory.shutdownWebDriver(webDriverContext);
             }
             else {
-                factory.resetWebDriver(webDriverContext);
+                if (!factory.resetWebDriver(webDriverContext)){
+                    factory.shutdownWebDriver(webDriverContext);
+                    webDriverContextSupplier.set(null);
+                }
             }
         }
 

@@ -60,5 +60,5 @@ public interface WebDriverFactory {
      *
      * @param webDriverContext a {@link com.technophobia.webdriver.util.WebDriverContext} object.
      */
-    void resetWebDriver(WebDriverContext webDriverContext);
+    boolean resetWebDriver(WebDriverContext webDriverContext);
 }
