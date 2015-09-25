@@ -24,6 +24,7 @@ import static org.hamcrest.Matchers.greaterThan;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.technophobia.webdriver.util.WebDriverUtils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -163,6 +164,7 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
      * @param predicate
      *            the predicate
      * @return the web element
+     * @deprecated This should be replaced and By's used instead. This will be removed in a later release.
      */
     public WebElement findElementByPredicate(final WebElementPredicate predicate) {
         logger.debug("About to find element by predicate " + predicate);
@@ -401,7 +403,7 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
             }
         }
 
-        elem = checkForOneMatchingElement("expecting an input of type " + inputType + " inside tag [" + tag
+        elem = WebDriverUtils.checkForOneMatchingElement("expecting an input of type " + inputType + " inside tag [" + tag
                 + "] with label [" + label + "]", matchingElems);
 
         webDriverContext().setCurrentElement(elem);
@@ -565,46 +567,6 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
     }
 
 
-    /**
-     * @param by
-     * @param childBy
-     * @param assertionMessage
-     * @param findParentAssertionMessage
-     * @param multipleChildrenMessage
-     * @return
-     */
-    private WebElement findParentByWithChildBy(final By by, final By childBy, final String assertionMessage,
-            final String findParentAssertionMessage, final String multipleChildrenMessage) {
-        WebElement rtn;
-        List<WebElement> matchingElements = null;
-
-        final List<WebElement> candidateParentElements = webDriver().findElements(by);
-
-        Assert.assertNotNull(findParentAssertionMessage, candidateParentElements);
-        Assert.assertFalse(findParentAssertionMessage, candidateParentElements.isEmpty());
-
-        for (final WebElement parent : candidateParentElements) {
-
-            final List<WebElement> children = parent.findElements(childBy);
-
-            // do we care if there are more than one matching child ? lets go
-            // with no..
-            if (!children.isEmpty()) {
-
-                if (matchingElements == null) {
-                    matchingElements = new ArrayList<WebElement>();
-                }
-                matchingElements.add(parent);
-                if (children.size() > 1) {
-                    logger.info(multipleChildrenMessage);
-                }
-            }
-        }
-        rtn = checkForOneMatchingElement(assertionMessage, matchingElements);
-
-        webDriverContext().setCurrentElement(rtn);
-        return rtn;
-    }
 
 
     /**
@@ -677,7 +639,7 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
             @Override
             WebElement checkMatchingElements(final List<WebElement> matchingElems, final String msg) {
 
-                return checkForOneMatchingElement(msg, matchingElems);
+                return WebDriverUtils.checkForOneMatchingElement(msg, matchingElems);
             }
         }
 
@@ -764,29 +726,6 @@ public class FinderWebDriverSubStepImplementations extends AbstractWebDriverSubS
     }
 
 
-    /**
-     * Checks that a list of WebElements only contains one (not empty and not
-     * too many).
-     *
-     * @param msg a {@link java.lang.String} object.
-     * @param matchingElems a {@link java.util.List} object.
-     * @return a {@link org.openqa.selenium.WebElement} object.
-     */
-    public static WebElement checkForOneMatchingElement(final String msg, final List<WebElement> matchingElems) {
-        WebElement rtn = null;
-        if (matchingElems != null && matchingElems.size() > 1) {
-            // ambiguous
-            Assert.fail("Found too many elements that meet this criteria");
-            // TODO - need some more debug here
-        }
-
-        else if (matchingElems != null) {
-            rtn = matchingElems.get(0);
-        }
-
-        Assert.assertNotNull(msg, rtn);
-        return rtn;
-    }
 
 
     /**

@@ -27,6 +27,7 @@ import com.google.common.base.Predicate;
  *
  * @author ian
  * @version $Id: $Id
+ * @deprecated This should be replaced and By's used instead. This will be removed in a later release.
  */
 public interface WebElementPredicate extends Predicate<WebElement> {
     /**

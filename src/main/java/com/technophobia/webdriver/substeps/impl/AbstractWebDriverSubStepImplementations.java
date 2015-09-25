@@ -18,13 +18,14 @@
  */
 package com.technophobia.webdriver.substeps.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.technophobia.webdriver.util.WebDriverUtils;
+import org.junit.Assert;
+import org.openqa.selenium.*;
 
 import com.google.common.base.Supplier;
 import com.google.common.collect.MapDifference;
@@ -32,6 +33,8 @@ import com.google.common.collect.Maps;
 import com.technophobia.substeps.runner.ProvidesScreenshot;
 import com.technophobia.webdriver.substeps.runner.DefaultExecutionSetupTearDown;
 import com.technophobia.webdriver.util.WebDriverContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * <p>Abstract AbstractWebDriverSubStepImplementations class.</p>
@@ -40,6 +43,10 @@ import com.technophobia.webdriver.util.WebDriverContext;
  * @version $Id: $Id
  */
 public abstract class AbstractWebDriverSubStepImplementations implements ProvidesScreenshot {
+
+    private static final Logger logger = LoggerFactory.getLogger(AbstractWebDriverSubStepImplementations.class);
+
+
 
     private final Supplier<WebDriverContext> webDriverContextSupplier;
 
@@ -129,4 +136,49 @@ public abstract class AbstractWebDriverSubStepImplementations implements Provide
 
         return screenshotTaker.getScreenshotAs(OutputType.BYTES);
     }
+
+
+    /**
+     * @param by
+     * @param childBy
+     * @param assertionMessage
+     * @param findParentAssertionMessage
+     * @param multipleChildrenMessage
+     * @return
+     */
+    protected WebElement findParentByWithChildBy(final By by, final By childBy, final String assertionMessage,
+                                               final String findParentAssertionMessage, final String multipleChildrenMessage) {
+        WebElement rtn;
+        List<WebElement> matchingElements = null;
+
+        final List<WebElement> candidateParentElements = webDriver().findElements(by);
+
+        Assert.assertNotNull(findParentAssertionMessage, candidateParentElements);
+        Assert.assertFalse(findParentAssertionMessage, candidateParentElements.isEmpty());
+
+        for (final WebElement parent : candidateParentElements) {
+
+            final List<WebElement> children = parent.findElements(childBy);
+
+            // do we care if there are more than one matching child ? lets go
+            // with no..
+            if (children!= null && !children.isEmpty()) {
+
+                if (matchingElements == null) {
+                    matchingElements = new ArrayList<WebElement>();
+                }
+                matchingElements.add(parent);
+                if (children.size() > 1) {
+                    logger.info(multipleChildrenMessage);
+                }
+            }
+        }
+        rtn = WebDriverUtils.checkForOneMatchingElement(assertionMessage, matchingElements);
+
+        webDriverContext().setCurrentElement(rtn);
+        return rtn;
+    }
+
+
 }
+

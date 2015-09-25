@@ -19,11 +19,11 @@
 package com.technophobia.webdriver.util;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.technophobia.webdriver.BaseBy;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.openqa.selenium.By;
@@ -211,22 +211,7 @@ public abstract class WebDriverSubstepsBy {
         return difference.areEqual();
     }
 
-    static abstract class BaseBy extends By {
 
-        @Override
-        public final List<WebElement> findElements(final SearchContext context) {
-            List<WebElement> matchingElems = findElementsBy(context);
-
-            if (matchingElems == null) {
-                matchingElems = Collections.emptyList();
-            }
-
-            return matchingElems;
-        }
-
-
-        public abstract List<WebElement> findElementsBy(final SearchContext context);
-    }
 
     static class ByTagAndAttributes extends BaseBy {
 
