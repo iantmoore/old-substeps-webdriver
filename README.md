@@ -10,6 +10,15 @@ There is also a [Substeps Google group](http://groups.google.com/group/substeps?
 Release Notes
 =============
 
+1.1.2
+-----
+* WebdriverFactory modifications to allow customised webdriver shutdown operations
+* javadocs, pom updates, trimmed down some logging
+* update to support new api methods around IExecutionListener
+* BaseBy moved to it's own class
+
+
+
 1.1.1
 -----
 * New step implementation, FindParentByTagAndAttributes.
